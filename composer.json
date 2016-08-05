@@ -1,0 +1,31 @@
+{
+    "name": "extcode/tcpdf",
+    "type": "typo3-cms-extension",
+    "description": "Wrapper Extension for tcpdf",
+    "license": [
+        "GPL-2.0+"
+    ],
+    "keywords": [
+        "TYPO3 CMS",
+        "PDF"
+    ],
+    "support": {
+        "issues": "https://forge.typo3.org/projects/extension-tcpdf"
+    },
+    "version": "0.2.0",
+    "require": {
+        "php": ">=5.4.0",
+        "typo3/cms-core": ">=6.2.1,<8.0"
+    },
+    "replace": {
+        "tcpdf": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Extcode\\TCPDF\\": "Classes"
+        },
+        "classmap": [
+            "Resources/Private/Library/tcpdf"
+        ]
+    }
+}

@@ -1,0 +1,13 @@
+.. ==================================================
+.. FOR YOUR INFORMATION
+.. --------------------------------------------------
+.. -*- coding: utf-8 -*- with BOM.
+
+0.2.0 - 05.08.2016
+------------------
+
+.. IMPORTANT::
+   * Diese Version ist ein komplett neuer Upload von tcpdf.
+   * Die Version 0.1.0 dieser Erweiterung wurde am 11. Dezember 2008 zum letzten mal aktualisiert.
+   * Vor dem Update sollte geprüft werden, in wie weit Änderungen an der eigenen Verwendung der Bibliothek gemacht werden müssen.
+   * Diese Version sollte definitiv nicht im Live-System aktualisiert werden.
