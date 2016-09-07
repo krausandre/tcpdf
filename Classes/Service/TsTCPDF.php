@@ -120,7 +120,7 @@ class TsTCPDF extends \TCPDF
         if ($this->pdfSettings[$this->pdfType]) {
             if ($this->pdfSettings[$this->pdfType]['header']) {
                 if ($this->pdfSettings[$this->pdfType]['fontSize']) {
-                    $this->SetFontSize($this->pdfSettings['fontSize']);
+                    $this->SetFontSize($this->pdfSettings[$this->pdfType]['fontSize']);
                 }
 
                 if ($this->pdfSettings[$this->pdfType]['header']['html']) {
@@ -158,7 +158,7 @@ class TsTCPDF extends \TCPDF
         if ($this->pdfSettings[$this->pdfType]) {
             if ($this->pdfSettings[$this->pdfType]['footer']) {
                 if ($this->pdfSettings[$this->pdfType]['fontSize']) {
-                    $this->SetFontSize($this->pdfSettings['fontSize']);
+                    $this->SetFontSize($this->pdfSettings[$this->pdfType]['fontSize']);
                 }
 
                 if ($this->pdfSettings[$this->pdfType]['footer']['html']) {
@@ -192,10 +192,11 @@ class TsTCPDF extends \TCPDF
      * @param string $templatePath
      * @param string $type
      * @param array $config
+     * @param array $assignToView
      *
      * @return void
      */
-    protected function renderStandaloneView($templatePath, $type, $config)
+    public function renderStandaloneView($templatePath, $type, $config, $assignToView = [])
     {
         $view = $this->getStandaloneView($templatePath, ucfirst($type));
 
@@ -216,6 +217,8 @@ class TsTCPDF extends \TCPDF
             $view->assign('numPages', $this->getAliasNbPages());
         }
 
+        $view->assignMultiple($assignToView);
+
         $content = $view->render();
         $content = trim(preg_replace('~[\n]+~', '', $content));
 
@@ -230,7 +233,7 @@ class TsTCPDF extends \TCPDF
      *
      * @return void
      */
-    protected function writeHtmlCellWithConfig($content, $config)
+    public function writeHtmlCellWithConfig($content, $config)
     {
         $width = $config['width'];
         $height = 0;
@@ -244,9 +247,12 @@ class TsTCPDF extends \TCPDF
             $align = $config['align'];
         }
 
-        $oldFontSize = $this->getFontSize();
+        $oldFontSize = $this->getFontSizePt();
         if ($config['fontSize']) {
             $this->SetFontSize($config['fontSize']);
+        }
+        if ($config['spacingY']) {
+            $this->setY($this->getY() + $config['spacingY']);
         }
 
         $this->writeHTMLCell(
@@ -277,7 +283,7 @@ class TsTCPDF extends \TCPDF
      *
      * @return \TYPO3\CMS\Fluid\View\StandaloneView Fluid instance
      */
-    protected function getStandaloneView($templatePath, $templateFileName = 'Default', $format = 'html')
+    public function getStandaloneView($templatePath, $templateFileName = 'Default', $format = 'html')
     {
         $templatePathAndFileName = $templatePath . $templateFileName . '.' . $format;
 
