@@ -7,7 +7,8 @@ Administratoren Handbuch
 ========================
 
 .. toctree::
-    :maxdepth: 5
-    :titlesonly:
+   :maxdepth: 5
+   :titlesonly:
 
-    Installation/Index
+   Installation/Index
+   Configuration/Index

@@ -1,3 +1,9 @@
+0.3.0
+    2016-09-07
+    Daniel Lorenz <daniel.lorenz@extco.de>
+
+    * TASK #1234: add TsTCPDF to extension for page configuration through TypoScript
+
 0.2.0
     2016-08-05
     Daniel Lorenz <daniel.lorenz@extco.de>

@@ -3,12 +3,7 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-Entwickler Handbuch
-===================
+Konfiguration
+=============
 
-.. toctree::
-   :maxdepth: 5
-   :titlesonly:
-
-   TCPDF/Index
-   TsTCPDF/Index
+Es sind keine weiteren Konfigurationen des Plugins notwendig.
