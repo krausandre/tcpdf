@@ -31,13 +31,6 @@ class TsTCPDF extends \TCPDF
     protected $objectManager;
 
     /**
-     * Log Manager
-     *
-     * @var \TYPO3\CMS\Core\Log\LogManager
-     */
-    protected $logManager;
-
-    /**
      * PDF Settings
      *
      * @var array
@@ -62,19 +55,6 @@ class TsTCPDF extends \TCPDF
         \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager
     ) {
         $this->objectManager = $objectManager;
-    }
-
-    /**
-     * Inject the Log Manager
-     *
-     * @param \TYPO3\CMS\Core\Log\LogManagerInterface $logḾanager
-     *
-     * @return void
-     */
-    public function injectLog(
-        \TYPO3\CMS\Core\Log\LogManagerInterface $logḾanager
-    ) {
-        $this->logManager = $logḾanager;
     }
 
     /**
@@ -312,7 +292,10 @@ class TsTCPDF extends \TCPDF
         }
 
         if (!$view->getTemplatePathAndFilename()) {
-            $logger = $this->logManager->getLogger(__CLASS__);
+            $logManager = $this->objectManager->get(
+                \TYPO3\CMS\Core\Log\LogManagerInterface::class
+            );
+            $logger = $logManager->getLogger(__CLASS__);
             $logger->error(
                 'Cannot find Template for PdfService',
                 [

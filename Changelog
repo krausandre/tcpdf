@@ -1,3 +1,12 @@
+0.3.2
+    2016-09-29
+    Daniel Lorenz <daniel.lorenz@extco.de>
+
+    * BUGFIX #1: do not inject log manager by default
+
+0.3.1
+    Daniel Lorenz <daniel.lorenz@extco.de>
+
 0.3.0
     2016-09-07
     Daniel Lorenz <daniel.lorenz@extco.de>
