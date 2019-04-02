@@ -1,13 +1,8 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
+.. include:: ../../Includes.txt
 
 Support
 =======
 
-Unterstützung
--------------
-Wenn Sie privaten oder persönliche Unterstützung benötigen, wenden Sie sich gern an mich.
+If you need further support, please contact me.
 
-**Diese Unterstützung kann nicht in jedem Fall kostenfrei erfolgen!**
+**Be aware that this support might not be free!**

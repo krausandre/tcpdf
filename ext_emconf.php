@@ -1,37 +1,28 @@
 <?php
 
-$EM_CONF[$_EXTKEY] = [
+$EM_CONF['tcpdf'] = [
     'title' => 'TCPDF',
     'description' => 'Wrapper Extension for tcpdf',
     'category' => 'services',
-    'author' => 'Daniel Lorenz',
+    'author' => 'Daniel Gohlke',
     'author_email' => 'ext.tcpdf@extco.de',
     'author_company' => 'extco.de UG (haftungsbeschränkt)',
     'shy' => '',
     'priority' => '',
     'module' => '',
-    'state' => 'beta',
+    'state' => 'stable',
     'internal' => '',
     'uploadfolder' => '0',
     'createDirs' => '',
     'modify_tables' => '',
     'clearCacheOnLoad' => 0,
     'lockType' => '',
-    'version' => '0.4.0',
+    'version' => '2.0.0',
     'constraints' => [
         'depends' => [
-            'typo3' => '6.2.0-8.7.99',
-            'php' => '5.6.0'
+            'typo3' => '9.5.0-9.5.99'
         ],
         'conflicts' => [],
         'suggests' => [],
-    ],
-    'autoload' => [
-        'psr-4' => [
-            "Extcode\\TCPDF\\" => "Classes",
-        ],
-        'classmap' => [
-            'Resources/Private/Library/tcpdf',
-        ]
     ],
 ];

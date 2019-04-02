@@ -9,15 +9,23 @@
         "TYPO3 CMS",
         "PDF"
     ],
+    "authors": [
+        {
+            "name": "Daniel Gohlke",
+            "email": "ext.tcpdf@extco.de",
+            "role": "Developer"
+        }
+    ],
     "support": {
         "issues": "https://github.com/extcode/tcpdf/issues"
     },
     "require": {
-        "php": ">=5.6.0",
-        "typo3/cms": "^6.2 || ^7.6 || ^8.7"
+        "php": ">=7.2.0 <7.3",
+        "typo3/cms-core": "^9.5"
     },
-    "replace": {
-        "tcpdf": "*"
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.0",
+        "helmich/typo3-typoscript-lint": "^1.4"
     },
     "autoload": {
         "psr-4": {
@@ -26,5 +34,26 @@
         "classmap": [
             "Resources/Private/Library/tcpdf"
         ]
+    },
+    "replace": {
+        "tcpdf": "self.version"
+    },
+    "config": {
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin"
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "mkdir -p .Build/Web/typo3conf/ext/",
+            "[ -L .Build/Web/typo3conf/ext/tcpdf ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/tcpdf"
+        ]
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "tcpdf",
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "app-dir": ".Build",
+            "web-dir": ".Build/public"
+        }
     }
 }
