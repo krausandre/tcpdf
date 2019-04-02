@@ -1,9 +1,11 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
+.. include:: ../../Includes.txt
 
-Konfiguration
+Configuration
 =============
 
-Es sind keine weiteren Konfigurationen des Plugins notwendig.
+.. toctree::
+   :maxdepth: 5
+   :titlesonly:
+
+   TCPDF/Index
+   TsTCPDF/Index

@@ -1,21 +1,25 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
+.. include:: ../../Includes.txt
 
 Installation
 ============
 
-Die Erweiterung wird wie jede andere Erweiterung im TYPO3 CMS installiert.
-
-Versionsverwaltung (github)
+Installation using Composer
 ---------------------------
-Die aktuellste Version lässt sich über github mit den üblichen git-Kommandos herunterladen.
+
+The recommended way to install the extension is by using `Composer <https://getcomposer.org/>`_.
+In your Composer based TYPO3 project root, just do
+
+`composer require extcode/tcpdf`.
+
+Installation from TYPO3 Extension Repository (TER)
+--------------------------------------------------
+
+Download and install the extension with the extension manager module.
+
+Latest version from git
+-----------------------
+You can get the latest version from git by using the git command:
 
 .. code-block:: bash
 
    git clone git@github.com:extcode/tcpdf.git
-
-|
-
-Nachdem die Erweiterung heruntergeladen ist, kann sie über den Extension-Manager aktiviert werden.

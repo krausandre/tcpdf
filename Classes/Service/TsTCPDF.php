@@ -2,99 +2,59 @@
 
 namespace Extcode\TCPDF\Service;
 
-/**
- * This file is part of the TYPO3 CMS project.
- *
- * It is free software; you can redistribute it and/or modify it under
- * the terms of the GNU General Public License, either version 2
- * of the License, or any later version.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * The TYPO3 project - inspiring people to share!
- */
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Object\ObjectManager;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 
-/**
- * TdTCPDF
- *
- * @package cart_pdf
- * @author Daniel Lorenz <ext.tcpdf@extco.de>
- */
 class TsTCPDF extends \TCPDF
 {
     /**
-     * Object Manager
-     *
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
+     * @var ObjectManager
      */
     protected $objectManager;
 
     /**
-     * PDF Settings
-     *
      * @var array
      */
     protected $pdfSettings;
 
     /**
-     * PDF Type
-     *
      * @var string
      */
     protected $pdfType;
 
     /**
-     * Injects the Object Manager
-     *
-     * @param \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager
-     *
-     * @return void
+     * @param ObjectManager $objectManager
      */
-    public function injectObjectManager(
-        \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager
-    ) {
+    public function injectObjectManager(ObjectManager $objectManager)
+    {
         $this->objectManager = $objectManager;
     }
 
     /**
-     * Get Cart PDF Type
-     *
      * @return string
      */
-    public function getCartPdfType()
+    public function getCartPdfType(): string
     {
         return $this->pdfType;
     }
 
     /**
-     * Set Cart PDF Type
-     *
      * @param string $pdfType
-     * @return void
      */
-    public function setCartPdfType($pdfType)
+    public function setCartPdfType(string $pdfType)
     {
         $this->pdfType = $pdfType;
     }
 
     /**
-     * Sets Settings
-     *
      * @param array $settings
-     *
-     * @return void
      */
-    public function setSettings($settings)
+    public function setSettings(array $settings)
     {
         $this->pdfSettings = $settings;
     }
 
-    /**
-     * render page header
-     *
-     * @return void
-     */
     public function header()
     {
         if ($this->pdfSettings[$this->pdfType]) {
@@ -128,11 +88,6 @@ class TsTCPDF extends \TCPDF
         }
     }
 
-    /**
-     * render page footer
-     *
-     * @return void
-     */
     public function footer()
     {
         if ($this->pdfSettings[$this->pdfType]) {
@@ -173,15 +128,17 @@ class TsTCPDF extends \TCPDF
      * @param string $type
      * @param array $config
      * @param array $assignToView
-     *
-     * @return void
      */
-    public function renderStandaloneView($templatePath, $type, $config, $assignToView = [])
-    {
+    public function renderStandaloneView(
+        string $templatePath,
+        string $type,
+        array $config,
+        array $assignToView = []
+    ) {
         $view = $this->getStandaloneView($templatePath, ucfirst($type));
 
         if ($config['file']) {
-            $file = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName(
+            $file = GeneralUtility::getFileAbsFileName(
                 $config['file']
             );
             $view->assign('file', $file);
@@ -192,7 +149,7 @@ class TsTCPDF extends \TCPDF
                 $view->assign('heigth', $config['heigth']);
             }
         }
-        if ($type == 'page') {
+        if ($type === 'page') {
             $view->assign('numPage', $this->getAliasNumPage());
             $view->assign('numPages', $this->getAliasNbPages());
         }
@@ -210,10 +167,8 @@ class TsTCPDF extends \TCPDF
      *
      * @param string $content
      * @param array $config
-     *
-     * @return void
      */
-    public function writeHtmlCellWithConfig($content, $config)
+    public function writeHtmlCellWithConfig(string $content, array $config)
     {
         $width = $config['width'];
         $height = 0;
@@ -261,25 +216,23 @@ class TsTCPDF extends \TCPDF
      * @param string $templateFileName
      * @param string $format
      *
-     * @return \TYPO3\CMS\Fluid\View\StandaloneView Fluid instance
+     * @return StandaloneView
      */
-    public function getStandaloneView($templatePath, $templateFileName = 'Default', $format = 'html')
+    public function getStandaloneView(string $templatePath, string $templateFileName = 'Default', string $format = 'html'): StandaloneView
     {
         $templatePathAndFileName = $templatePath . $templateFileName . '.' . $format;
 
-        /** @var \TYPO3\CMS\Fluid\View\StandaloneView $view */
-        $view = $this->objectManager->get(
-            \TYPO3\CMS\Fluid\View\StandaloneView::class
-        );
+        /** @var StandaloneView $view */
+        $view = $this->objectManager->get(StandaloneView::class);
         $view->setFormat($format);
 
         if ($this->pdfSettings['view']) {
-            $view->setLayoutRootPaths($this->resolveRootPaths('layoutRootPaths'));
-            $view->setPartialRootPaths($this->resolveRootPaths('partialRootPaths'));
+            $view->setLayoutRootPaths($this->pdfSettings['view']['layoutRootPaths']);
+            $view->setPartialRootPaths($this->pdfSettings['view']['partialRootPaths']);
 
             if ($this->pdfSettings['view']['templateRootPaths']) {
                 foreach ($this->pdfSettings['view']['templateRootPaths'] as $pathNameKey => $pathNameValue) {
-                    $templateRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName(
+                    $templateRootPath = GeneralUtility::getFileAbsFileName(
                         $pathNameValue
                     );
 
@@ -309,34 +262,5 @@ class TsTCPDF extends \TCPDF
         $view->getRequest()->setControllerExtensionName('Tcpdf');
 
         return $view;
-    }
-
-    /**
-     * Returns the Partial Root Path
-     *
-     * For TYPO3 Version 6.2 it resolves the absolute file names
-     *
-     * @var string $type
-     * @return array
-     *
-     * @deprecated will be removed with support for TYPO3 6.2
-     */
-    protected function resolveRootPaths($type)
-    {
-        $rootPaths = [];
-
-        if ($this->pdfSettings['view'][$type]) {
-            $rootPaths = $this->pdfSettings['view'][$type];
-
-            if (\TYPO3\CMS\Core\Utility\GeneralUtility::compat_version('6.2')) {
-                foreach ($rootPaths as $rootPathsKey => $rootPathsValue) {
-                    $rootPaths[$rootPathsKey] = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName(
-                        $rootPathsValue
-                    );
-                }
-            }
-        }
-
-        return $rootPaths;
     }
 }

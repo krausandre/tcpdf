@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+	 viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+<g>
+	<rect fill="#ff0000" x="0" y="5.3" width="16" height="5.5" />
+	<g transform="scale(0.5 1)">
+		<text fill="#ffffff" x="10.75" y="9.15" font-family="sans-sarif" font-size="3" font-weight="bold">TCPDF</text>
+	</g>
+</g>
+</svg>

@@ -1,15 +1,10 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
 .. include:: Includes.txt
 
 .. _start:
 
-===========================
+==========
 EXT: TCPDF
-===========================
+==========
 
 .. image:: Images/tcpdf_logo.png
    :height: 200
@@ -18,37 +13,36 @@ EXT: TCPDF
 
 .. only:: html
 
-    :Version:
-        |release|
+   :Version:
+      |release|
 
-    :Sprache:
-        de
+   :Sprache:
+      de
 
-    :Beschreibung:
-        TCPDF ist eine Erweiterung, die die tcpdf-Bibliothek einbindet und anderen Erweiterungen zur Verfügung stellt.
+   :Beschreibung:
+      TCPDF is a small wrapper Extension for the tcpdf library.
 
-    :Keywords:
-        pdf
+   :Keywords:
+      pdf
 
-    :Autor:
-        Daniel Lorenz
+   :Autor:
+      Daniel Gohlke
 
-    :E-Mail:
-        ext.tcpdf@extco.de
+   :E-Mail:
+      ext.tcpdf@extco.de
 
-    :Rendered:
-        |today|
+   :Rendered:
+      |today|
 
-    The content of this document is related to TYPO3,
-    a GNU/GPL CMS/Framework available from `www.typo3.org <https://typo3.org/>`__.
+   The content of this document is related to TYPO3,
+   a GNU/GPL CMS/Framework available from `www.typo3.org <https://typo3.org/>`__.
 
-    **Inhaltsverzeichnis**
+   **Table of Contents**
 
 .. toctree::
-    :maxdepth: 5
-    :titlesonly:
+   :maxdepth: 5
+   :titlesonly:
 
-    Introduction/Index
-    DeveloperManual/Index
-    AdministratorManual/Index
-    Misc/Index
+   Introduction/Index
+   AdministratorManual/Index
+   Changelog/Index

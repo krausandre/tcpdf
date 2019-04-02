@@ -1,13 +1,10 @@
-.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
+.. include:: ../../../Includes.txt
 
 TsTCPDF
 =======
 
-Die Verwendung von TsTCPDF ist die Möglichkeit TCPDF zu verwenden unter der Verwendung von TypoScript und HTML-Templates
-für die Ausgabe. Es stehen aber auch die normalen Möglichkeiten von TCPDF zur Verfügung.
+The use of TsTCPDF is the ability to use TCPDF using TypoScript and HTML templates
+for the issue. But there are also the normal possibilities of TCPDF available.
 
 .. code-block:: php
 
@@ -17,11 +14,11 @@ für die Ausgabe. Es stehen aber auch die normalen Möglichkeiten von TCPDF zur 
     $pdf->setSettings($pluginSettings);
     $pdf->setPdfType($pdfType);
 
-|
 
-Eine Beispielkongiguration für den Header und Footer des Dokuments könnten wie folgt aussehen. (Das Beispiel ist auf CartPdf übernommen.)
+A sample configuration for the header and footer of the document might look like this.
+This example is taken from Cart Pdf extension.
 
-::
+.. code-block:: typoscript
 
     invoicePdf {
         debug = 0
@@ -99,5 +96,3 @@ Eine Beispielkongiguration für den Header und Footer des Dokuments könnten wie
             }
         }
     }
-
-|
