@@ -6,7 +6,7 @@ cache:
 
 variables:
   COMPOSER_CACHE_DIR: ".composer"
-  TYPO3_PATH_WEB: "$CI_PROJECT_DIR/.Build/Web"
+  TYPO3_PATH_WEB: "$CI_PROJECT_DIR/.build/Web"
   MYSQL_DATABASE: "typo3"
   MYSQL_ROOT_PASSWORD: "joh316"
   typo3DatabaseName: "typo3"
@@ -30,7 +30,7 @@ lint:cgl:
     - composer remove typo3/cms-core --no-update
     - composer install --no-progress --no-ansi --no-interaction
   script:
-    - .Build/bin/php-cs-fixer fix --config=Build/.php_cs.dist -v --dry-run --using-cache=no --path-mode=intersection ./
+    - .build/bin/php-cs-fixer fix --config=Build/.php_cs.dist -v --dry-run --using-cache=no --path-mode=intersection ./
 
 lint:typoscriptcgl:
   stage: lint
@@ -38,7 +38,7 @@ lint:typoscriptcgl:
   script:
     - composer remove typo3/cms-core --no-update
     - composer install --no-progress --no-ansi --no-interaction
-    - .Build/bin/typoscript-lint -c tslint.yaml
+    - .build/bin/typoscript-lint -c tslint.yaml
 
 lint:yaml:
   stage: lint
@@ -63,5 +63,17 @@ lint:php71:
 lint:php72:
   stage: lint
   image: php:7.2-alpine
+  script:
+    - find . -name \*.php -exec php -l "{}" \;
+
+lint:php73:
+  stage: lint
+  image: php:7.3-alpine
+  script:
+    - find . -name \*.php -exec php -l "{}" \;
+
+lint:php74:
+  stage: lint
+  image: php:7.4-alpine
   script:
     - find . -name \*.php -exec php -l "{}" \;

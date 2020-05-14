@@ -19,14 +19,6 @@
     "support": {
         "issues": "https://github.com/extcode/tcpdf/issues"
     },
-    "require": {
-        "php": ">=7.0.0 <7.3",
-        "typo3/cms-core": "^8.7"
-    },
-    "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.0",
-        "helmich/typo3-typoscript-lint": "^1.4"
-    },
     "autoload": {
         "psr-4": {
             "Extcode\\TCPDF\\": "Classes"
@@ -35,25 +27,40 @@
             "Resources/Private/Library/tcpdf"
         ]
     },
-    "replace": {
-        "tcpdf": "self.version"
-    },
     "config": {
-        "vendor-dir": ".Build/vendor",
-        "bin-dir": ".Build/bin"
-    },
-    "scripts": {
-        "post-autoload-dump": [
-            "mkdir -p .Build/Web/typo3conf/ext/",
-            "[ -L .Build/Web/typo3conf/ext/tcpdf ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/tcpdf"
-        ]
+        "vendor-dir": ".build/vendor",
+        "bin-dir": ".build/bin"
     },
     "extra": {
         "typo3/cms": {
             "extension-key": "tcpdf",
             "cms-package-dir": "{$vendor-dir}/typo3/cms",
-            "app-dir": ".Build",
-            "web-dir": ".Build/public"
+            "app-dir": ".build",
+            "web-dir": ".build/public"
         }
+    },
+    "scripts": {
+        "extcode:cgl": [
+            ".build/bin/php-cs-fixer fix --config=Build/.php_cs.dist -v --using-cache=no --path-mode=intersection ./"
+        ],
+        "extcode:test:php:lint": [
+            ".build/bin/phplint -c Build/phplint.yaml"
+        ],
+        "extcode:test": [
+            "@extcode:test:php:lint"
+        ],
+        "post-autoload-dump": [
+            "mkdir -p .build/Web/typo3conf/ext/",
+            "[ -L .build/Web/typo3conf/ext/tcpdf ] || ln -snvf ../../../../. .build/Web/typo3conf/ext/tcpdf"
+        ]
+    },
+    "require": {
+        "php": ">=7.0.0 <7.5",
+        "typo3/cms-core": "^8.7"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.0",
+        "helmich/typo3-typoscript-lint": "^1.4",
+        "overtrue/phplint": "^1.1"
     }
 }
