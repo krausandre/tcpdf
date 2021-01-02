@@ -223,7 +223,7 @@ class TsTCPDF extends \TCPDF
         $templatePathAndFileName = $templatePath . $templateFileName . '.' . $format;
 
         /** @var StandaloneView $view */
-        $view = $this->objectManager->get(StandaloneView::class);
+        $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setFormat($format);
 
         if ($this->pdfSettings['view']) {
@@ -245,7 +245,7 @@ class TsTCPDF extends \TCPDF
         }
 
         if (!$view->getTemplatePathAndFilename()) {
-            $logManager = $this->objectManager->get(
+            $logManager = GeneralUtility::makeInstance(
                 \TYPO3\CMS\Core\Log\LogManagerInterface::class
             );
             $logger = $logManager->getLogger(__CLASS__);
