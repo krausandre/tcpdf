@@ -137,16 +137,16 @@ class TsTCPDF extends \TCPDF
     ) {
         $view = $this->getStandaloneView($templatePath, ucfirst($type));
 
-        if ($config['file']) {
+        if (isset($config['file'])) {
             $file = GeneralUtility::getFileAbsFileName(
                 $config['file']
             );
             $view->assign('file', $file);
-            if ($config['width']) {
+            if (isset($config['width'])) {
                 $view->assign('width', $config['width']);
             }
-            if ($config['height']) {
-                $view->assign('heigth', $config['heigth']);
+            if (isset($config['height'])) {
+                $view->assign('heigth', $config['height']);
             }
         }
         if ($type === 'page') {
@@ -170,23 +170,23 @@ class TsTCPDF extends \TCPDF
      */
     public function writeHtmlCellWithConfig(string $content, array $config)
     {
-        $width = $config['width'];
+        $width = $config['width'] ?? 0;
         $height = 0;
-        if ($config['height']) {
+        if (isset($config['height'])) {
             $height = $config['height'];
         }
-        $positionX = $config['positionX'];
-        $positionY = $config['positionY'];
+        $positionX = $config['positionX'] ?? 0;
+        $positionY = $config['positionY'] ?? 0;
         $align = 'L';
-        if ($config['align']) {
+        if (isset($config['align'])) {
             $align = $config['align'];
         }
 
         $oldFontSize = $this->getFontSizePt();
-        if ($config['fontSize']) {
+        if (isset($config['fontSize'])) {
             $this->SetFontSize($config['fontSize']);
         }
-        if ($config['spacingY']) {
+        if (isset($config['spacingY'])) {
             $this->setY($this->getY() + $config['spacingY']);
         }
 
@@ -204,7 +204,7 @@ class TsTCPDF extends \TCPDF
             true
         );
 
-        if ($config['fontSize']) {
+        if (isset($config['fontSize'])) {
             $this->SetFontSize($oldFontSize);
         }
     }
